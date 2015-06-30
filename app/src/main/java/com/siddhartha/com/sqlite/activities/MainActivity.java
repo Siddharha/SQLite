@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
-        Log.e("Name: ", arrayList1.toString());
+        Log.e("Name: ", arrayList2.toString());
         arrayAdapter = new ArrayAdapter(getBaseContext(),android.R.layout.simple_list_item_1,arrayList1);
         Name_txt.setAdapter(arrayAdapter);
         Name_txt.setThreshold(1);
@@ -76,9 +76,9 @@ public class MainActivity extends AppCompatActivity {
     public void Clk_add(View view)
     {
 
+
         Intent intent = new Intent(getBaseContext(),AddActivity.class);
-        intent.putExtra("Name",arrayList1);
-        intent.putExtra("Number",arrayList2);
+        intent.putStringArrayListExtra("Name",arrayList1);
         startActivity(intent);
 
     }

@@ -2,10 +2,13 @@ package com.siddhartha.com.sqlite.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.siddhartha.com.sqlite.R;
+
+import java.util.ArrayList;
 
 public class AddActivity extends AppCompatActivity {
 
@@ -15,11 +18,14 @@ public class AddActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add);
         overridePendingTransition(R.anim.abc_fade_in,R.anim.abc_slide_out_bottom);
 
-        String i = getIntent().getStringExtra("Name");
-        String j = getIntent().getStringExtra("Number");
 
-//        Log.e("Imported Data -->",i);
-   //     Log.e("Imported Data -->",j);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ArrayList i = getIntent().getStringArrayListExtra("Name");
+        Log.e("Show --> ", i.toString());
     }
 
     @Override
