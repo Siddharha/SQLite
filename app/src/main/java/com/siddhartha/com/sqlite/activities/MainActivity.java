@@ -2,6 +2,7 @@ package com.siddhartha.com.sqlite.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     EditText txt_number;
    ArrayList<String> arrayList1,arrayList2;
     ArrayAdapter arrayAdapter;
+    List<items> contacts;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Reading all contacts
         Log.d("Reading: ", "Reading all contacts..");
-        List<items> contacts = db.getAllContacts();
+        contacts = db.getAllContacts();
 
         for (items cn : contacts) {
             String log = "Id: " + cn.getIndex() + " ,Name: " + cn.getNames() + " ,Phone: " + cn.getNumbers();
@@ -76,9 +78,9 @@ public class MainActivity extends AppCompatActivity {
     public void Clk_add(View view)
     {
 
-
+        items details = new items();
         Intent intent = new Intent(getBaseContext(),AddActivity.class);
-        intent.putStringArrayListExtra("Name",arrayList1);
+        intent.putExtra("Name", (Parcelable) details);
         startActivity(intent);
 
     }

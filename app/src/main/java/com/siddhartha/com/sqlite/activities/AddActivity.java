@@ -5,27 +5,45 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 import com.siddhartha.com.sqlite.R;
+import com.siddhartha.com.sqlite.adapters.MyListAdapter;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 
 public class AddActivity extends AppCompatActivity {
 
+    ListView listView;
+    MyListAdapter myListAdapter;
+    Serializable i;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
         overridePendingTransition(R.anim.abc_fade_in,R.anim.abc_slide_out_bottom);
 
+        initialize();
+
+
+    }
+
+    private void display() {
+        listView.setAdapter(myListAdapter);
+    }
+
+    private void initialize() {
+        listView = (ListView)findViewById(R.id.listView);
+       // myListAdapter = new MyListAdapter(this,i);
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        ArrayList i = getIntent().getStringArrayListExtra("Name");
+        i = getIntent().getParcelableExtra("Name");
         Log.e("Show --> ", i.toString());
+        display();
     }
 
     @Override
