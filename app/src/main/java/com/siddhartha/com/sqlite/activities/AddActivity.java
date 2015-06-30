@@ -2,7 +2,6 @@ package com.siddhartha.com.sqlite.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -19,8 +18,8 @@ public class AddActivity extends AppCompatActivity {
         String i = getIntent().getStringExtra("Name");
         String j = getIntent().getStringExtra("Number");
 
-        Log.e("Imported Data -->",i);
-        Log.e("Imported Data -->",j);
+//        Log.e("Imported Data -->",i);
+   //     Log.e("Imported Data -->",j);
     }
 
     @Override
