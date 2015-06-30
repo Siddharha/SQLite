@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">SQLite</string>
+
+    <string name="hello_world">SQLite</string>
+    <string name="action_settings">Settings</string>
+    <string name="Name_txt">
+
+    </string>
+    <string name="btn_add">Add</string>
+    <string name="Name_hint">Enter Name</string>
+    <string name="Number_hint">Enter Number</string>
+    <string name="title_activity_add">AddActivity</string>
+    <string name="Add_title">Added Items</string>
+</resources>
