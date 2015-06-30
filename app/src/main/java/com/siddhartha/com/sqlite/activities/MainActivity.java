@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     AutoCompleteTextView Name_txt;
     EditText txt_number;
-   ArrayList<String> arrayList;
+   ArrayList<String> arrayList1,arrayList2;
     ArrayAdapter arrayAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +44,13 @@ public class MainActivity extends AppCompatActivity {
             String log = "Id: " + cn.getIndex() + " ,Name: " + cn.getNames() + " ,Phone: " + cn.getNumbers();
             // Writing Contacts to log
           //  Log.e("Name: ", log);
-            arrayList.add(cn.getNames());
+            arrayList1.add(cn.getNames());
+            arrayList2.add(cn.getNumbers());
 
 
         }
-        Log.e("Name: ", arrayList.toString());
-        arrayAdapter = new ArrayAdapter(getBaseContext(),android.R.layout.simple_list_item_1,arrayList);
+        Log.e("Name: ", arrayList1.toString());
+        arrayAdapter = new ArrayAdapter(getBaseContext(),android.R.layout.simple_list_item_1,arrayList1);
         Name_txt.setAdapter(arrayAdapter);
         Name_txt.setThreshold(1);
 
@@ -68,13 +69,16 @@ public class MainActivity extends AppCompatActivity {
     private void initialize() {
         Name_txt = (AutoCompleteTextView)findViewById(R.id.Name_txt);
         txt_number = (EditText)findViewById(R.id.txt_number);
-        arrayList = new ArrayList<>();
+        arrayList1 = new ArrayList<>();
+        arrayList2 = new ArrayList<>();
     }
 
     public void Clk_add(View view)
     {
 
         Intent intent = new Intent(getBaseContext(),AddActivity.class);
+        intent.putExtra("Name",arrayList1);
+        intent.putExtra("Number",arrayList2);
         startActivity(intent);
 
     }
