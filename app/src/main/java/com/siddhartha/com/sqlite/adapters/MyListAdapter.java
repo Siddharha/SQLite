@@ -48,19 +48,19 @@ public class MyListAdapter extends BaseAdapter {
         View rootView = convertView;
         if(rootView == null)    //If it goes wrong....
         {
-            rootView = _layoutInflater.inflate(R.layout.table_layout,parent,false);
+            rootView = _layoutInflater.inflate(R.layout.table_layout,null);
             ItemHolder itemHolder = new ItemHolder();
-            itemHolder.txt_name = (TextView)rootView.findViewById(R.id.Name_txt);
+            itemHolder.txt_name = (TextView)rootView.findViewById(R.id.txt_name);
             itemHolder.txt_number = (TextView)rootView.findViewById(R.id.txt_number);
             itemHolder.txt_id = (TextView)rootView.findViewById(R.id.txt_id);
 
-            rootView.setTag(rootView);
+            rootView.setTag(itemHolder);
 
         }
         ItemHolder newItemHolder = (ItemHolder)rootView.getTag();
         newItemHolder.txt_name.setText(arrayList.get(position).getNames());
         newItemHolder.txt_number.setText(arrayList.get(position).getNumbers());
-        newItemHolder.txt_id.setText(arrayList.get(position).getIndex());
+//        newItemHolder.txt_id.setText(arrayList.get(position).getIndex());
         return rootView;
     }
 

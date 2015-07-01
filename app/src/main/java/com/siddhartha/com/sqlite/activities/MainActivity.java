@@ -2,7 +2,6 @@ package com.siddhartha.com.sqlite.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -29,32 +28,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initialize();
-        DatabaseHandler db = new DatabaseHandler(this);
-
-        // Inserting Contacts
-        Log.d("Insert: ", "Inserting ..");
-      //  db.addContact(new items("Ravi", "9100000000"));
-      //  db.addContact(new items("Srinivas", "9199999999"));
-     //   db.addContact(new items("Tommy", "9522222222"));
-      //  db.addContact(new items("Karthik", "9533333333"));
-
-        // Reading all contacts
-        Log.d("Reading: ", "Reading all contacts..");
-        contacts = db.getAllContacts();
-
-        for (items cn : contacts) {
-            String log = "Id: " + cn.getIndex() + " ,Name: " + cn.getNames() + " ,Phone: " + cn.getNumbers();
-            // Writing Contacts to log
-          //  Log.e("Name: ", log);
-            arrayList1.add(cn.getNames());
-            arrayList2.add(cn.getNumbers());
-
-
-        }
-        Log.e("Name: ", arrayList2.toString());
-        arrayAdapter = new ArrayAdapter(getBaseContext(),android.R.layout.simple_list_item_1,arrayList1);
-        Name_txt.setAdapter(arrayAdapter);
-        Name_txt.setThreshold(1);
 
 
 
@@ -64,6 +37,30 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        DatabaseHandler db = new DatabaseHandler(this);
+
+        // Inserting Contacts
+        Log.d("Insert: ", "Inserting ..");
+
+
+        // Reading all contacts
+        Log.d("Reading: ", "Reading all contacts..");
+        contacts = db.getAllContacts();
+
+        for (items cn : contacts) {
+            String log = "Id: " + cn.getIndex() + " ,Name: " + cn.getNames() + " ,Phone: " + cn.getNumbers();
+            // Writing Contacts to log
+            // Log.e("Name: ", log);
+            arrayList1.add(cn.getNames());
+            arrayList2.add(cn.getNumbers());
+
+
+        }
+        Log.e("Name: ", arrayList1.toString());
+        arrayAdapter = new ArrayAdapter(getBaseContext(),android.R.layout.simple_list_item_1,arrayList1);
+        Name_txt.setAdapter(arrayAdapter);
+        Name_txt.setThreshold(1);
+
         overridePendingTransition(R.anim.abc_slide_in_bottom,R.anim.abc_fade_out);
     }
 
@@ -78,10 +75,20 @@ public class MainActivity extends AppCompatActivity {
     public void Clk_add(View view)
     {
 
-        items details = new items();
-        Intent intent = new Intent(getBaseContext(),AddActivity.class);
-        intent.putExtra("Name", (Parcelable) details);
+      //  items details = new items();
+        String x,y;
+        x = Name_txt.getText().toString();
+        y = txt_number.getText().toString();
+
+        Intent intent = new Intent(getBaseContext(), AddActivity.class);
+        if(!x.equals("")) {
+            DatabaseHandler db = new DatabaseHandler(this);
+            db.addContact(new items(x, y));
+            db.close();
+        }
+
         startActivity(intent);
+
 
     }
 }

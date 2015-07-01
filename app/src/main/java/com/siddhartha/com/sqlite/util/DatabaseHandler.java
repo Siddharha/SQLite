@@ -135,4 +135,10 @@ public class DatabaseHandler extends SQLiteOpenHelper{
                 new String[] { String.valueOf(contact.getIndex()) });
         db.close();
     }
+
+    public void deleteContacts() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_CONTACTS,null,null);
+        db.close();
+    }
 }
